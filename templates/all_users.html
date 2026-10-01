@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}FitBuddy – All Users{% endblock %}
+{% block content %}
+<section class="card">
+  <h1>All Users</h1>
+  {% if not users %}
+    <p class="lead">No users have been registered yet.</p>
+  {% else %}
+  <div style="overflow:auto;">
+  <table>
+    <thead><tr><th>User</th><th>Profile</th><th>Goal</th><th>Original Plan</th><th>Updated Plan</th></tr></thead>
+    <tbody>
+      {% for user in users %}
+      {% set latest = user.plans[-1] if user.plans else None %}
+      <tr>
+        <td><strong>{{ user.username }}</strong><br><small>{{ user.user_id }}</small></td>
+        <td>{{ user.age }} yrs<br>{{ user.weight }} kg<br>{{ user.intensity }}</td>
+        <td>{{ user.goal }}</td>
+        <td class="small-plan">{{ latest.original_plan if latest else '—' }}</td>
+        <td class="small-plan">{{ latest.updated_plan if latest and latest.updated_plan else 'No update yet' }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  </div>
+  {% endif %}
+</section>
+{% endblock %}

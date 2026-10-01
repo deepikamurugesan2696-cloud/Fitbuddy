@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+{% block title %}FitBuddy – Error{% endblock %}
+{% block content %}
+<section class="card">
+  <div class="alert error"><strong>Something went wrong.</strong><br>{{ message }}</div>
+  <a href="/">← Back to FitBuddy</a>
+</section>
+{% endblock %}

@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block title %}FitBuddy – Admin{% endblock %}
+{% block content %}
+<section class="card" style="max-width:520px;margin:40px auto;">
+  <h1>Admin Dashboard</h1>
+  <p class="lead">Enter the configured admin token to view stored users and plans.</p>
+  <form method="post" action="/admin">
+    <div class="field"><label>Admin token</label><input type="password" name="token" required></div>
+    <br><button type="submit">Open Dashboard</button>
+  </form>
+</section>
+{% endblock %}

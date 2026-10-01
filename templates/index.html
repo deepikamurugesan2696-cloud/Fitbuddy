@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block title %}FitBuddy – Generate Plan{% endblock %}
+{% block content %}
+<div class="hero">
+  <section class="card">
+    <h1>Your AI fitness companion</h1>
+    <p class="lead">Create a structured 7-day fitness routine and a practical nutrition or recovery tip using Gemini.</p>
+    <p class="lead">For safety, the generator avoids extreme dieting, unsafe exercise challenges and medical claims.</p>
+  </section>
+  <section class="card">
+    <h3>How it works</h3>
+    <ol class="lead">
+      <li>Enter your profile.</li>
+      <li>Gemini creates a 7-day plan.</li>
+      <li>Review the plan and submit feedback.</li>
+      <li>Gemini revises the plan and stores the new version.</li>
+    </ol>
+  </section>
+</div>
+
+<section class="card">
+  <h2>Generate your plan</h2>
+  <form method="post" action="/generate-workout">
+    <div class="form-grid">
+      <div class="field"><label>Name</label><input name="username" required maxlength="120" placeholder="Your name"></div>
+      <div class="field"><label>User ID</label><input name="user_id" required maxlength="80" pattern="[A-Za-z0-9_-]+" placeholder="e.g. user001"></div>
+      <div class="field"><label>Age</label><input type="number" name="age" min="13" max="100" required></div>
+      <div class="field"><label>Weight (kg)</label><input type="number" name="weight" min="1" max="500" step="0.1" required></div>
+      <div class="field"><label>Goal</label>
+        <select name="goal" required>
+          <option value="general wellness">General wellness</option>
+          <option value="weight loss">Weight loss</option>
+          <option value="muscle gain">Muscle gain</option>
+          <option value="flexibility">Flexibility</option>
+          <option value="endurance">Endurance</option>
+        </select>
+      </div>
+      <div class="field"><label>Intensity</label>
+        <select name="intensity" required><option value="low">Low</option><option value="medium" selected>Medium</option><option value="high">High</option></select>
+      </div>
+      <div class="field"><label>Experience</label>
+        <select name="experience"><option value="beginner">Beginner</option><option value="intermediate">Intermediate</option><option value="advanced">Advanced</option></select>
+      </div>
+      <div class="field"><label>Days per week</label><input type="number" name="days_per_week" min="1" max="7" value="4"></div>
+      <div class="field full"><button type="submit">Generate 7-Day Plan ✨</button></div>
+    </div>
+  </form>
+</section>
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block title %}FitBuddy – Your Plan{% endblock %}
+{% block content %}
+{% if message %}<div class="alert">{{ message }}</div>{% endif %}
+<section class="card">
+  <h1>{{ user.username }}'s FitBuddy Plan</h1>
+  <div class="meta">
+    <div><small>User ID</small>{{ user.user_id }}</div>
+    <div><small>Age</small>{{ user.age }}</div>
+    <div><small>Weight</small>{{ user.weight }} kg</div>
+    <div><small>Goal</small>{{ user.goal }}</div>
+    <div><small>Intensity</small>{{ user.intensity }}</div>
+    <div><small>Experience</small>{{ user.experience }}</div>
+  </div>
+</section>
+
+<section class="card">
+  <h2>{{ 'Updated Workout Plan' if plan.updated_plan else '7-Day Workout Plan' }}</h2>
+  <div class="plan">{{ plan.updated_plan or plan.original_plan }}</div>
+</section>
+
+<section class="card">
+  <h2>Nutrition / Recovery Tip</h2>
+  <div class="tip">{{ plan.nutrition_tip }}</div>
+</section>
+
+<section class="card">
+  <h2>Improve this plan</h2>
+  <p class="lead">Example: “Make the sessions shorter and add more mobility work.”</p>
+  <form method="post" action="/submit-feedback">
+    <input type="hidden" name="user_id" value="{{ user.user_id }}">
+    <div class="field"><label>Feedback</label><textarea name="feedback" rows="5" maxlength="1000" required placeholder="Tell FitBuddy what you want changed..."></textarea></div>
+    <br><button type="submit">Update Plan with AI</button>
+  </form>
+</section>
+{% endblock %}

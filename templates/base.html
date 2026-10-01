@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}FitBuddy{% endblock %}</title>
+  <link rel="stylesheet" href="{{ url_for('static', path='styles.css') }}">
+</head>
+<body>
+  <main class="container">
+    <nav class="nav">
+      <a class="brand" href="/">FitBuddy ✦</a>
+      <div class="nav-links">
+        <a href="/">Home</a>
+        <a href="/view-all-users">Admin</a>
+        <a href="/docs">API Docs</a>
+      </div>
+    </nav>
+    {% block content %}{% endblock %}
+    <div class="footer">Educational wellness application — not a substitute for professional medical advice.</div>
+  </main>
+</body>
+</html>
